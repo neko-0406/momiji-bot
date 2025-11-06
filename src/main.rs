@@ -1,6 +1,9 @@
 use serenity::{Client, all::{EventHandler, GatewayIntents, Ready, Context}};
 use std::env;
+
+use crate::memo::memo_handler::MemoHandler;
 mod memo;
+mod wether;
 
 #[tokio::main]
 async fn main() {
@@ -11,9 +14,10 @@ async fn main() {
 
     let mut client = Client::builder(&token, intents)
         .event_handler(ReadyEvent)
+        .event_handler(MemoHandler)
         .await
         .expect("クライアントの初期化に失敗しました");
-    
+
     if let Err(why) = client.start().await {
         println!("クライアントの起動に失敗しました: {:?}", why);
     }

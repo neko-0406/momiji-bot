@@ -1,0 +1,5 @@
+struct WeatherReport;
+
+impl WeatherReport{
+    
+}
